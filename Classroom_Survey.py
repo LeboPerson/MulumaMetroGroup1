@@ -1,20 +1,6 @@
-#Lebohang's code
-# Create a list to hold all responses
-all_responses = []
-# Ask how many participants
-num_participants = int(input("How many participants? "))
-# Collecting answers from each participant
-for i in range(num_participants):
-  print(f"\nParticipant {i + 1}'s turn:")
-  responses = []
-for question in questions:
-  answer = input(question + "").strip().lower()
-  responses.append(answer)
-  all_responses.append(responses)
-# Showing what was collected
-print("\nAll Responses:")
-for idx, response in enumerate(all_responses,1):
-  print(f"Participant {idx}: {response}")
+
+users = 3 #Bob
+
 
 #Risana
 def tally_responses(responses):
@@ -33,6 +19,7 @@ def tally_responses(responses):
 
 
 if __name__ == "__main__":
+
     #Samantha
     questions = [
     "Have you previously worked on a coding project? (yes/no)",
@@ -44,16 +31,25 @@ if __name__ == "__main__":
 
     responses = {}
 
-    # Allow multiple participants to respond
-    while True:
-        name = input("Enter your name (or type 'done' to finish): ")
+    print(f"📋 Survey starting — max {users} participants allowed.\n")#Bob
+
+    while len(responses) < users:
+        print(f"\nParticipant {len(responses) + 1} of {users}")#Lebohang's code
+        name = input("Enter your name (or type 'done' to finish): ".strip())
+        
         if name.lower() == "done":
             break
 
+
+        if name in responses:
+            print(" This name has already participated. Please use a different name.")#Bob
+            continue
+
+
         answers = {}
-        for question in questions:
+        for question in questions:#Lebohang's code
             while True:
-                answer = input(f"{question} ").strip().lower()
+                answer = input(f"{question} ").strip().lower()#Lebohang's code
                 if answer in ("yes", "no"):
                     answers[question] = answer
                     break
@@ -61,7 +57,10 @@ if __name__ == "__main__":
                     print("Please answer with 'yes' or 'no'.") #Livhuwane
         responses[name] = answers
 
-    # Tally and print the results
+    #Bob
+    if len(responses) == users:
+        print("\n Reached the maximum number of participants.")#Bob
+
     tally = tally_responses(responses)
     print("\n--- Tally Results ---\n") #Livhuwane
     for question, answers in tally.items():
