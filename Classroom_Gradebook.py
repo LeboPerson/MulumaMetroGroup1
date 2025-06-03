@@ -26,7 +26,7 @@ def record_grade(name, score):
         students[name].add_score(score)  # Call the add_score method from the Student class
     else:
         print(f"{name} not found. Please add the student first.")  # Handle case where student doesn't exist
-
+#Lebohang's code
 #compute average
 def compute_average(name, grades):
     if name in grades:
