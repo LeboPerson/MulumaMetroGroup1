@@ -73,3 +73,63 @@ def lowest_average(grades):
     
     return lowest, lowest_avg
 
+#Risana's code
+def display_student_averages(self):
+        print("\nIndividual Student Averages:")
+        for name in self.grades:
+            average = self.compute_average(name)
+            print(f"{name}: {average:.2f}")
+
+   def display_class_average(self):
+         average = self.class_average()
+         print(f"\nClass Average: {average:.2f}")
+
+   def display_top_bottom_performers(self):
+        if not self.grades:
+            print("No students in the gradebook.")
+            return
+
+        averages = {name: self.compute_average(name) for name in self.grades}
+        top_performer = max(averages, key=averages.get)
+        bottom_performer = min(averages, key=averages.get)
+
+        print(f"\nTop Performer: {top_performer} with an average of {averages[top_performer]:.2f}")
+        print(f"Bottom Performer: {bottom_performer} with an average of {averages[bottom_performer]:.2f}")
+
+   def main():
+     gradebook = Gradebook()
+#Livhuwane's Code
+     while True:
+        print("\nMenu:")
+        print("1. Add Student")
+        print("2. Record Grade")
+        print("3. View Student Average")
+        print("4. View Class Average")
+        print("5. View Top and Bottom Performers")
+        print("6. Exit")
+#Risana's Code
+        choice = input("Choose an option: ")
+
+        if choice == '1':
+            name = input("Enter student name: ")
+            gradebook.add_student(name)
+        elif choice == '2':
+            name = input("Enter student name: ")
+            score = float(input("Enter score: "))
+            gradebook.record_grade(name, score)
+        elif choice == '3':
+            name = input("Enter student name: ")
+            average = gradebook.compute_average(name)
+            print(f"{name}'s average: {average:.2f}")
+        elif choice == '4':
+            gradebook.display_class_average()
+        elif choice == '5':
+            gradebook.display_top_bottom_performers()
+        elif choice == '6':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid option. Please try again.")
+
+if __name__ == "__main__":
+     main()
