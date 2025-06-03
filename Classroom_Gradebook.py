@@ -1,4 +1,9 @@
 # Define a Student class to store name and grades
+students = {}
+
+class Gradebook:
+    def __init__(self):
+        self.grades = {}
 class Student:
     def __init__(self, name):
         self.name = name          # Store the student's name
@@ -80,11 +85,11 @@ def display_student_averages(self):
             average = self.compute_average(name)
             print(f"{name}: {average:.2f}")
 
-   def display_class_average(self):
+def display_class_average(self):
          average = self.class_average()
          print(f"\nClass Average: {average:.2f}")
 
-   def display_top_bottom_performers(self):
+def display_top_bottom_performers(self):
         if not self.grades:
             print("No students in the gradebook.")
             return
@@ -96,7 +101,7 @@ def display_student_averages(self):
         print(f"\nTop Performer: {top_performer} with an average of {averages[top_performer]:.2f}")
         print(f"Bottom Performer: {bottom_performer} with an average of {averages[bottom_performer]:.2f}")
 
-   def main():
+def main():
      gradebook = Gradebook()
 #Livhuwane's Code
      while True:
