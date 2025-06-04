@@ -37,7 +37,7 @@ class Gradebook():
             print(f"{name} not found. Please add the student first.")  # Handle case where student doesn't exist
     #Lebohang's code
     #compute average
-    def compute_average(self,name, ):
+    def compute_average(self,name):
         if name in self.grades:
             scores = self.grades[name].scores
             if scores:
@@ -58,24 +58,24 @@ class Gradebook():
             return 0.0  # Avoid divide-by-zero
         return total_score / total_count
     #highest average
-    def highest_average(grades):
+    def highest_average(self,grades):
         highest = None
         highest_avg = -1
         
         for name, scores in grades.items():
-            avg = compute_average(name, grades)
+            avg = self.compute_average(name, grades)
             if avg > highest_avg:
                 highest_avg = avg
                 highest = name
         
         return highest, highest_avg
     #lowest average
-    def lowest_average(grades):
+    def lowest_average(self,grades):
         lowest = None
         lowest_avg = float('inf')
         
         for name, scores in grades.items():
-            avg = compute_average(name, grades)
+            avg = self.compute_average(name, grades)
             if avg < lowest_avg:
                 lowest_avg = avg
                 lowest = name
@@ -134,49 +134,67 @@ class Gradebook():
                 print(f"File '{filename}' not found.")
             except Exception as e:
                 print(f"Error loading grades: {e}")
-def main():
-     gradebook = Gradebook()
+def main_menu():
+    gradebook = Gradebook()
 
-#Livhuwane's Code
-     while True:
-        print("\nMenu:")
+    while True:
+        print("\n=== Gradebook Menu ===")
         print("1. Add Student")
         print("2. Record Grade")
         print("3. View Student Average")
         print("4. View Class Average")
         print("5. View Top and Bottom Performers")
-        print("6. Exit")
-        print("7. Save Grades to File")
-        print("8. Load Grades from File")
-#Risana's Code
-        choice = input("Choose an option: ")
+        print("6. Save Grades to File")
+        print("7. Load Grades from File")
+        print("8. Exit")
+
+        choice = input("Choose an option (1-8): ").strip()
 
         if choice == '1':
-            name = input("Enter student name: ")
+            name = input("Enter student name: ").strip()
             gradebook.add_student(name)
+
         elif choice == '2':
-            name = input("Enter student name: ")
-            score = float(input("Enter score: "))
+            name = input("Enter student name: ").strip()
+            try:
+                score = float(input("Enter score (0-100): "))
+            except ValueError:
+                print("Invalid score input. Please enter a number between 0 and 100.")
+                continue
             gradebook.record_grade(name, score)
+
         elif choice == '3':
-            name = input("Enter student name: ")
-            average = gradebook.compute_average(name)
-            print(f"{name}'s average: {average:.2f}")
+            name = input("Enter student name: ").strip()
+            try:
+                average = gradebook.compute_average(name)
+                print(f"{name}'s average: {average:.2f}")
+            except ValueError as e:
+                print(e)
+
         elif choice == '4':
             gradebook.display_class_average()
+
         elif choice == '5':
             gradebook.display_top_bottom_performers()
+
         elif choice == '6':
-            print("Exiting...")
-        elif choice == '7':
-            filename = input("Enter filename to save grades (e.g., grades.csv): ")
+            filename = input("Enter filename to save grades (e.g., grades.csv): ").strip()
             gradebook.save_grades(filename)
-        elif choice == '8':
-            filename = input("Enter filename to load grades (e.g., grades.csv): ")
+
+        elif choice == '7':
+            filename = input("Enter filename to load grades (e.g., grades.csv): ").strip()
             gradebook.load_grades(filename)
-            break
+
+        elif choice == '8':
+            confirm = input("Are you sure you want to exit? (y/n): ").strip().lower()
+            if confirm == 'y':
+                print("Exiting... Goodbye!")
+                break
+            else:
+                print("Exit cancelled.")
+
         else:
-            print("Invalid option. Please try again.")
+            print("Invalid option. Please enter a number between 1 and 8.")
 
 if __name__ == "__main__":
-     main()
+    main_menu()
