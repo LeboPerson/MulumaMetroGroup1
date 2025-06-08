@@ -2,7 +2,7 @@
 from Travel_Route import Graph
 from collections import deque
 
-def find_shortest_route(graph, start, end):
+def find_shortest_route(graph, start, end): #Dijkstra algorythm
     distances = {city: float('inf') for city in graph.routes}
     previous = {city: None for city in graph.routes}
     visited = set()

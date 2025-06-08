@@ -20,7 +20,7 @@ g = Graph()
 
 g.add_route("Johannesburg", "Pretoria", 300)
 g.add_route("Johanesburg", "Durban", 50)
-g.add_route("pretoria", "Polokwane", 200)
+g.add_route("Pretoria", "Polokwane", 200)
 g.add_route("Cape Town", "Malawi", 2000)
   
 #for city, neighbors in g.routes.items():
