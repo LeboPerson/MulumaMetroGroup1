@@ -1,6 +1,8 @@
 #This is the Advanced Project 6
 #I will send project responsibilities
 
+from collections import deque
+
 class Graph:
     def __init__(self):
         self.routes = {}   
@@ -26,8 +28,7 @@ g.add_route("Cape Town", "Malawi", 2000)
 #for city, neighbors in g.routes.items():
  #   print(f"{city} connected to: {neighbors}")
 
-from Travel_Route import Graph
-from collections import deque
+
 
 def find_shortest_route(graph, start, end): #Dijkstra algorythm
     distances = {city: float('inf') for city in graph.routes}
