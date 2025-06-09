@@ -1,40 +1,35 @@
 import csv
-# Define a Student class to store name and grades
-
-students = {}
-
+#Samantha's code
+# Dictionary to hold student objects
+students = {}  
 
 class Student:
-    def __init__(self,name):
-         # Store the student's name
+    def __init__(self, name):
         self.name = name
-        self.scores = []          # Create an empty list to store their grades
+        self.scores = []
 
     def add_score(self, score):
-        # Validate the score is between 0 and 100
         if 0 <= score <= 100:
-            self.scores.append(score)  # Add the valid score to the student's list
+            self.scores.append(score)
             print(f"Added score {score} for {self.name}.")
         else:
-            print("Invalid score! Must be between 0 and 100.")  # Show error if score is invalid
-class Gradebook():
-    def __init__(self):
-       
-        self.grades = {}
-# Add a new student to the dictionary if they don’t already exist
-    def add_student(self,name):
-        if name in self.grades:
-            print(f"{name} is already in the system.")  # Prevent adding duplicate student
-        else:
-            self.grades[name] = Student(name)              # Create a new Student object and store it
-            print(f"Student {name} added.")             # Confirm student was added
+            print("Invalid score! Must be between 0 and 100.")
 
-# Record a grade for an existing student
-    def record_grade(self,name, score):
-        if name in self.grades:
-            self.grades[name].add_score(score)  # Call the add_score method from the Student class
-        else:
-            print(f"{name} not found. Please add the student first.")  # Handle case where student doesn't exist
+# Add a new student
+def add_student(name):
+    if name in students:
+        print(f"{name} is already in the system.")
+    else:
+        students[name] = Student(name)
+        print(f"Student {name} added.")
+
+# Record a grade for a student
+def record_grade(name, score):
+    if name in students:
+        students[name].add_score(score)
+    else:
+        print(f"{name} not found. Please add the student first.")
+
     #Lebohang's code
     #compute average
     def compute_average(self,name):
