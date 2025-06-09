@@ -52,21 +52,18 @@ def find_shortest_route(graph, start, end): #Dijkstra algorythm
                 previous[neighbor] = current_city
                 queue.append((neighbor, new_distance))
 
-    # Path created for test purposes
+    # Path construction
+    path = []
+    city = end
+    while city is not None:
+        path.insert(0, city)  # Insert at the beginning to reverse the order
+        city = previous[city]
 
-    # path = []
-    # city = end
-    # while city:
-    #     path.insert(0, city)
-    #     city = previous[city]
+    if distances[end] == float('inf'):
+        return None, None  # No path found
+    return path, distances[end]  # Return the path and total distance
 
-    # if distances[end] == float('inf'):
-    #     return None, None
-    # return path, distances[end]
 
-# 
-# 
-# Display if the code works with given paremeters from the Travel_Route
 """
 g = Graph()
 g.add_route("Johannesburg", "Pretoria", 300)
@@ -84,3 +81,4 @@ else:
     print(f"No path from {start} to {end} found.")
 
 """
+ 
