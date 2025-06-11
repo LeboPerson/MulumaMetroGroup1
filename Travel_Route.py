@@ -86,3 +86,27 @@ else:
     print(f"No path from {start} to {end} found.")
 
 """
+#Samanthas
+def travel_interface(graph):
+    print("🚗 Welcome to the Travel Route Planner!")
+    print("📍 Available Cities:", ", ".join(graph.routes.keys()))
+
+    start = input("Enter starting city: ").strip().title()
+    end = input("Enter destination city: ").strip().title()
+
+    if start not in graph.routes:
+        print(f"4😵4 Error: '{start}' not found in city list.")
+        return
+    if end not in graph.routes:
+        print(f"4😵4 Error: '{end}' not found in city list.")
+        return
+
+    previous, distances = find_shortest_route(graph, start, end)
+    path, total_distance = reconstruct_path(previous, distances, start, end)
+
+    if path is None:
+        print(f"⚠️  No path found from {start} to {end}.")
+    else:
+        print("\n✅ Route Found:")
+        print(" -> ".join(path))
+        print(f"🛣️  Total Distance: {total_distance} km\n")
